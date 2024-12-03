@@ -1,5 +1,6 @@
 const btn = document.querySelector('.btn');
-const statusMessage = document.querySelector('.status-message')
+const statusMessage = document.querySelector('.status-message');
+const transmission = document.querySelector('.transmission-text');
 
 // Run you car!
 const carRun = () => {
@@ -14,6 +15,7 @@ const carRun = () => {
 // Car is stardet!
 function carStart() {
   drawStatus(' Car is started!');
+  setInterval(showTransmissionValue, 1000)
 };
 
 // Whith car something wrong!
@@ -26,14 +28,20 @@ function carBroke() {
   ];
   statusNotification.forEach((item, index) => {
     setTimeout(() => {
-      drawStatus(item)
-    }, (index + 1) * 600)
-  })
+      drawStatus(item)}, index * 700)
+  })  
 };
 
 // Log car status
 function drawStatus(status) {
   statusMessage.innerHTML = status;
+};
+
+// Show transmission value in html
+function showTransmissionValue() {
+  let transmissionValue = 0;
+  transmission.innerHTML = transmissionValue
+  transmissionValue++;
 };
 
 btn.addEventListener('click', carRun)
